@@ -16,6 +16,12 @@ jobs:
 
       - name: Install golang latest version
         uses: actions/setup-go@v2
+
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: go get -v ./...
       
       - name: Run tests
-        run: go test ./...
+        run: go test -v ./...
