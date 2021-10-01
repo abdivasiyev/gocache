@@ -3,8 +3,10 @@ package gocache
 import "errors"
 
 type Client interface {
+	Ping() bool
 	Get(key string) interface{}
 	Set(key string, data interface{}) error
+	Close() error
 }
 
 func NewClient(cfg *Config) (Client, error) {

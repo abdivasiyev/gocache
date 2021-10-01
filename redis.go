@@ -35,6 +35,13 @@ func newRedisCache(cfg *Config) (Client, error) {
 	}, nil
 }
 
+// Ping checks cache alive
+func (rc *redisCache) Ping() bool {
+	_, err := rc.client.Ping(rc.ctx).Result()
+
+	return err == nil
+}
+
 // Gets from cache by key
 func (rc *redisCache) Get(key string) interface{} {
 	data, err := rc.client.Get(rc.ctx, key).Result()
@@ -53,4 +60,9 @@ func (rc *redisCache) Set(key string, data interface{}) error {
 	}
 
 	return nil
+}
+
+// Close closes connection
+func (rc *redisCache) Close() error {
+	return rc.client.Close()
 }
