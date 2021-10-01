@@ -16,5 +16,6 @@ jobs:
 
       - name: Install golang latest version
         uses: actions/setup-go@v2
-        run: |
-          go test ./...
+      
+      - name: Run tests
+        run: go test ./...
