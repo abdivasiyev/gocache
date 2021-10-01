@@ -1,0 +1,20 @@
+name: testing
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install redis
+        uses: shogo82148/actions-setup-redis@v1
+
+      - name: Install memcached
+        uses: niden/actions-memcached@v7
+
+      - name: Install golang latest version
+        uses: actions/setup-go@v2
+        run: |
+          go test ./...
