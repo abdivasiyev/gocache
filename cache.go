@@ -4,8 +4,8 @@ import "errors"
 
 type Client interface {
 	Ping() bool
-	Get(key string) interface{}
-	Set(key string, data interface{}) error
+	Get(key string) string
+	Set(key string, data string) error
 	Close() error
 }
 
