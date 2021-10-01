@@ -25,7 +25,7 @@ type Config struct {
 }
 
 // Construct new configuration
-func New() *Config {
+func NewConfig() *Config {
 	return &Config{
 		Driver:     RedisDriver,
 		Addresses:  []string{"127.0.0.1:6379"},
