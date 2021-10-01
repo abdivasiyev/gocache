@@ -16,5 +16,9 @@ func NewClient(cfg *Config) (Client, error) {
 		return newRedisCache(cfg)
 	}
 
+	if driver == MemcachedDriver {
+		return newMemCached(cfg)
+	}
+
 	return nil, errors.New("unsupported driver type")
 }
