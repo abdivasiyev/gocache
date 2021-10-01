@@ -43,18 +43,18 @@ func (rc *redisCache) Ping() bool {
 }
 
 // Gets from cache by key
-func (rc *redisCache) Get(key string) interface{} {
+func (rc *redisCache) Get(key string) string {
 	data, err := rc.client.Get(rc.ctx, key).Result()
 
 	if err != nil {
-		return nil
+		return ""
 	}
 	return data
 }
 
 // Sets to cache with key of data
 // If something went, returns error
-func (rc *redisCache) Set(key string, data interface{}) error {
+func (rc *redisCache) Set(key string, data string) error {
 	if err := rc.client.Set(rc.ctx, key, data, time.Duration(rc.exp)*time.Second).Err(); err != nil {
 		return err
 	}
